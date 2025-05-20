@@ -1,0 +1,12 @@
+library(ggplot2)
+library(dplyr)
+library(tidyr)
+library(gridExtra)
+library(openxlsx)
+
+meta <- read.xlsx("KRAKEN2_summary.xlsx", sheet="Sheet2")
+meta.tidy <- gather(data = meta, key = Sample, value = Hit, -Family)
+
+ggplot(subset(meta.tidy),aes(x=Sample,y=Family,size=Hit,fill=Family)) + geom_point(color="black", shape=21, alpha=0.4) + scale_size(range = c(0, 15)) + theme_bw() +
+theme() + xlab("") + ylab("") +
+theme(axis.text.x = element_text(angle=90, vjust=0.2, hjust=1, size=9), axis.text.y = element_text(size=9)) + guides(colour=FALSE)
