@@ -16,21 +16,21 @@ The plot was generated from Kraken2 classification outputs through the following
 | File name               | Description                                           |
 |-------------------------|-------------------------------------------------------|
 | `Kraken2_bubble.R`        | R script to generate the bubble plot (Figure 2)     |
-| `rankF_percent_top30.tsv` | Input abundance table by the R script; contains relative abundance data of top 30 families   |
+| `rankF_percent_top30.tsv` | Input abundance table by the R script   |
 | `taxonomy_bubble.pdf`     | Final output plot in PDF format                 |
 
 - Processing Scripts and Intermediate Data
   
 | File                          | Description                                     |
 |-------------------------------|-------------------------------------------------|
-| `report_to_combined_rankF.sh` | Bash script to extract entries with Rank = F (Family) from Kraken2 `.report` files and merge them into a single file     |
-| `combined_rankF.tsv`          | Merged table of family-level abundance from all Kraken2 report files (output of `report_to_combined_rankF.sh`)             |
-| `rankF_table.py`              | Python script to construct lineage tables and generate abundance matrices                                                  |
-| `rankF_percent_sorting.py`    | Python script to sort and filter the top 30 families by average abundance  |
+| `report_to_combined_rankF.sh` | Bash script to extract entries with rank from Kraken2 `.report` files and merge them into a single file     |
+| `combined_rankF.tsv`          | Output of `report_to_combined_rankF.sh`             |
+| `rankF_table.py`              | Python script to generate abundance matrices                         |
+| `rankF_percent_sorting.py`    | Python script to sort and filter the top 30 abundant families   |
 | `report_to_combined.sh`       | (Optional) Script that merges Kraken2 reports without filtering by rank; includes all taxonomic levels  |
 
 
-## Workflow: From Kraken2 reports to `family_top30_selected.tsv`
+## Workflow: From Kraken2 reports to `rankF_percent_top30.tsv`
 The input file for the R script (`rankF_percent_top30.tsv`) was generated through the following bioinformatics steps, starting from 28 individual Kraken2 `.report` files (one per sample)
 
 ### 1. Merge Kraken2 reports (family-level and higher ranks)
