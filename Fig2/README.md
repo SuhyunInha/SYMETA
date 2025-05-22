@@ -1,4 +1,4 @@
-# Fig2: Taxonomic Composition Bubble Plot (Family Level)
+# Fig2: Taxonomic Composition Bubble Plot
 This directory contains all scripts and data files used to generate Figure 2 in the manuscript:
 "Microbial metagenomes from Lake Soyang, the largest freshwater reservoir in South Korea" (under review at Scientific Data)
 
@@ -17,21 +17,20 @@ The plot was generated from Kraken2 classification outputs through the following
 |-------------------------|-------------------------------------------------------|
 | `Kraken2_bubble.R`        | R script to generate the bubble plot (Figure 2)     |
 | `rankF_percent_top30.tsv` | Input abundance table by the R script   |
-| `taxonomy_bubble.pdf`     | Final output plot in PDF format                 |
+| `taxonomy_bubble.pdf`     | Output plot by the R script                 |
 
 - Processing Scripts and Intermediate Data
   
 | File                          | Description                                     |
 |-------------------------------|-------------------------------------------------|
-| `report_to_combined_rankF.sh` | Bash script to extract entries with rank from Kraken2 `.report` files and merge them into a single file     |
+| `report_to_combined_rankF.sh` | extracts entries from Kraken2 report files and merges into a single file     |
 | `combined_rankF.tsv`          | Output of `report_to_combined_rankF.sh`             |
-| `rankF_table.py`              | Python script to generate abundance matrices                         |
-| `rankF_percent_sorting.py`    | Python script to sort and filter the top 30 abundant families   |
-| `report_to_combined.sh`       | (Optional) Script that merges Kraken2 reports without filtering by rank; includes all taxonomic levels  |
+| `rankF_table.py`              | generates abundance matrices                         |
+| `rankF_percent_sorting.py`    | sorts and filters the top 30 abundant families   |
 
 
 ## Workflow: From Kraken2 reports to `rankF_percent_top30.tsv`
-The input file for the R script (`rankF_percent_top30.tsv`) was generated through the following bioinformatics steps, starting from 28 individual Kraken2 `.report` files (one per sample)
+The input file for the R script was generated through the following bioinformatics steps, starting from 28 individual Kraken2 `.report` files
 
 ### 1. Merge Kraken2 reports (family-level and higher ranks)
 Merged 28 Kraken2 `.report` files into a single table, extracting at the family-level and all higher taxonomic ranks.
@@ -52,7 +51,7 @@ Constructed lineage information by parsing taxonomic ranks for each TaxID, and g
 rankF_table.py
 ```
 Key steps:
-- Track lineage levels from higher (e.g., Domain) to lower (Family) using defined rank order (U → R → D → P → C → O → F)
+- Track lineage levels from higher to lower using defined rank order (U → R → D → P → C → O → F)
 - Construct hierarchical taxonomic assignments
 - Generate per-sample relative abundance and read count tables
 
