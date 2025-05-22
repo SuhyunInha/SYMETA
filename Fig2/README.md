@@ -11,14 +11,14 @@ The plot was generated from Kraken2 classification outputs through the following
 - Visualization in R
 
 ## Directory Contents
-### Files for Figure Generation
+- Files for Figure Generation
 | File name               | Description                                           |
 |-------------------------|-------------------------------------------------------|
 | `Kraken2_bubble.R`        | R script to generate the bubble plot (Figure 2)           |
 | `rankF_percent_top30.tsv` | Input abundance table by the R script; contains relative abundance data of top 30 families   |
 | `taxonomy_bubble.pdf`     | Final output plot in PDF format                 |
 
-### Processing Scripts and Intermediate Data
+- Processing Scripts and Intermediate Data
 | File                          | Description                                                                                                                                                      |
 | ----------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `report_to_combined_rankF.sh` | Bash script to extract entries with Rank = F (Family) from Kraken2 `.report` files and merge them into a single file                   |
@@ -27,10 +27,11 @@ The plot was generated from Kraken2 classification outputs through the following
 | `rankF_percent_sorting.py`    | Python script to sort and filter the top 30 families by average abundance  |
 | `report_to_combined.sh`       | (Optional) Script that merges Kraken2 reports without filtering by rank; includes all taxonomic levels  |
 
+
 ## Workflow: From Kraken2 reports to `family_top30_selected.tsv`
 The input file for the R script (`rankF_percent_top30.tsv`) was generated through the following bioinformatics steps, starting from 28 individual Kraken2 `.report` files (one per sample)
 
-1. Merge Kraken2 reports (family-level and higher ranks)
+### 1. Merge Kraken2 reports (family-level and higher ranks)
 Merged 28 Kraken2 `.report` files into a single table, extracting at the family-level and all higher taxonomic ranks.
 ```bash
 report_to_combined_rankF.sh
@@ -42,7 +43,7 @@ Key steps:
 Input: `*.Kraken2.Paired.report`
 Output: `combined_rankF.tsv`
 
-2. Generate percent and read count tables
+### 2. Generate percent and read count tables
 Constructed lineage information by parsing taxonomic ranks for each TaxID, and generated abundance tables for each sample.
 ```python
 rankF_table.py
@@ -54,7 +55,7 @@ Key steps:
 Input: `combined_rankF.tsv`
 Output: `rankF_percent.tsv`, `rankF_read.tsv`
 
-3. Filter and sort top 30 abundant families
+### 3. Filter and sort top 30 abundant families
 Filtered entries to include only those with Rank = F (Family), calculated the average relative abundance across samples, and selected the top 30 most abundant families.
 ```python
 rankF_percent_sorting.py
