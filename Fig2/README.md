@@ -42,6 +42,7 @@ Key steps:
 - Exclude Genus (G), Species (S), and Strain (S1) ranks
 - Extract sample names from filenames
 - Format output with: Sample, Taxon, Percent, Reads, Rank, TaxID
+
 Input: `*.Kraken2.Paired.report`
 Output: `combined_rankF.tsv`
 
@@ -54,6 +55,7 @@ Key steps:
 - Track lineage levels from higher (e.g., Domain) to lower (Family) using defined rank order (U → R → D → P → C → O → F)
 - Construct hierarchical taxonomic assignments
 - Generate per-sample relative abundance and read count tables
+
 Input: `combined_rankF.tsv`
 Output: `rankF_percent.tsv`, `rankF_read.tsv`
 
@@ -67,5 +69,6 @@ Key steps:
 - Calculate average relative abundance across all samples
 - Select top 30 families based on mean abundance
 - Sort results by taxonomic hierarchy: Phylum → Class → Order → Family
+
 Input: `rankF_percent.tsv`
 Output: `rankF_percent_top30.tsv`
