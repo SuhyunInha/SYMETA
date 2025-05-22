@@ -5,7 +5,7 @@ This directory contains all scripts and data files used to generate Figure 2 in 
 ## Overview
 The figure illustrates the family-level taxonomic composition of metagenomic reads from 28 samples using a bubble plot.
 The plot was generated from Kraken2 classification outputs through the following workflow:
-- Extraction and filtering of family-level taxa
+- Filtering of Kraken2 classifications to retain taxa at the family level or above
 - Construction of lineage-resolved abundance tables
 - Selection of the top 30 most abundant families
 - Visualization in R
