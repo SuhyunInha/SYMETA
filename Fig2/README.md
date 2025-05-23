@@ -37,7 +37,7 @@ Merged 28 Kraken2 `.report` files into a single table, extracting at the family-
 ```bash
 report_to_combined_rankF.sh
 ```
-#### Key steps
+#### Key steps:
 - Merge all Kraken2 `.report` files into one combined table
 - Extract sample names from filenames
 - Format output with: `Sample`, `Taxon`, `Percent`, `Reads`, `Rank`, `TaxID`
@@ -51,7 +51,7 @@ Constructed lineage information by parsing taxonomic ranks for each `TaxID`, and
 ```python
 rankF_table.py
 ```
-#### Key steps
+#### Key steps:
 (The input data is vertically structured by taxonomic hierarchy, i.e., one Rank per row)
 - Built a lineage table with one row per `TaxID`, filling in values from `Taxon` into columns added according to the hierarchy order
 - Determined lineage structure by evaluating the `Rank` column in top-down order: U → R → D → P → C → O → F
