@@ -44,7 +44,7 @@ report_to_combined_rankF.sh
 - Exclude lower taxonomic ranks (in `Rank`): Genus (`G`), Species (`S`), and Strain (`S1`)
 
 Input: `*.Kraken2.Paired.report`
-Output: `combined_rankF.tsv`
+Output: `combined_rankF.tsv` (included in this directory)
 
 ### 2. Generate percent and read count tables
 Constructed lineage information by parsing taxonomic ranks for each `TaxID`, and generated abundance tables for each sample.
@@ -74,4 +74,4 @@ rankF_percent_sorting.py
 - Sort results by taxonomic hierarchy: Phylum → Class → Order → Family
 
 Input: `rankF_percent.tsv`
-Output: `rankF_percent_top30.tsv`
+Output: `rankF_percent_top30.tsv` (included in this directory)
