@@ -38,10 +38,10 @@ Merged 28 Kraken2 `.report` files into a single table, extracting at the family-
 report_to_combined_rankF.sh
 ```
 #### Key steps
-- Merge all Kraken2 .report files into one combined table
-- Exclude lower taxonomic ranks: Genus (G), Species (S), and Strain (S1)
+- Merge all Kraken2 `.report` files into one combined table
 - Extract sample names from filenames
-- Format output with: Sample, Taxon, Percent, Reads, Rank, TaxID
+- Format output with: `Sample`, `Taxon`, `Percent`, `Reads`, `Rank`, `TaxID
+- Exclude lower taxonomic ranks (in `Rank`): Genus (`G`), Species (`S`), and Strain (`S1`)
 
 Input: `*.Kraken2.Paired.report`
 Output: `combined_rankF.tsv`
@@ -62,12 +62,12 @@ Input: `combined_rankF.tsv`
 Output: `rankF_percent.tsv`, `rankF_read.tsv`
 
 ### 3. Filter and sort top 30 abundant families
-Filtered entries to include only those with Rank = F (Family), calculated the average relative abundance across samples, and selected the top 30 most abundant families.
+Filtered entries to include only those with `Rank = F` (Family), calculated the average relative abundance across samples, and selected the top 30 most abundant families.
 ```python
 rankF_percent_sorting.py
 ```
 #### Key steps:
-- Filter for family-level entries (Rank = F)
+- Filter for family-level entries (`Rank = F`)
 - Calculate the average relative abundance of each family across all samples
 - Select top 30 families based on mean abundance
 - Sort results by taxonomic hierarchy: Phylum → Class → Order → Family
