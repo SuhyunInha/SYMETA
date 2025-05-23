@@ -43,8 +43,8 @@ report_to_combined_rankF.sh
 - Format output with: `Sample`, `Taxon`, `Percent`, `Reads`, `Rank`, `TaxID`
 - Exclude lower taxonomic ranks (in `Rank`): Genus (`G`), Species (`S`), and Strain (`S1`)
 
-Input: `*.Kraken2.Paired.report`
-Output: `combined_rankF.tsv` (included in this directory)
+#### Input: `*.Kraken2.Paired.report`
+#### Output: `combined_rankF.tsv` (included in this directory)
 
 ### 2. Generate percent and read count tables
 Constructed lineage information by parsing taxonomic ranks for each `TaxID`, and generated abundance tables for each sample.
@@ -58,8 +58,8 @@ rankF_table.py
   - Handled rank discontinuity and repeated ranks by reusing the most recent valid lineage where appropriate
 - Once built, sample IDs were appended as columns and each `TaxID`–`Sample` cell was filled with read count (`Reads`) or relative abundance (`Percent`)
 
-Input: `combined_rankF.tsv`
-Output: `rankF_percent.tsv`, `rankF_read.tsv`
+#### Input: `combined_rankF.tsv`
+#### Output: `rankF_percent.tsv`, `rankF_read.tsv`
 
 ### 3. Filter and sort top 30 abundant families
 Filtered entries to include only those with `Rank = F` (Family), calculated the average relative abundance across samples, and selected the top 30 most abundant families.
@@ -73,5 +73,5 @@ rankF_percent_sorting.py
 - Remove all other data columns except taxonomy and sample-specific abundance values
 - Sort results by taxonomic hierarchy: Phylum → Class → Order → Family
 
-Input: `rankF_percent.tsv`
-Output: `rankF_percent_top30.tsv` (included in this directory)
+#### Input: `rankF_percent.tsv`
+#### Output: `rankF_percent_top30.tsv` (included in this directory)
