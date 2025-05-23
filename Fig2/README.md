@@ -37,7 +37,7 @@ Merged 28 Kraken2 `.report` files into a single table, extracting at the family-
 ```bash
 report_to_combined_rankF.sh
 ```
-Key steps:
+#### Key steps
 - Merge all Kraken2 .report files into one combined table
 - Exclude lower taxonomic ranks: Genus (G), Species (S), and Strain (S1)
 - Extract sample names from filenames
@@ -51,7 +51,7 @@ Constructed lineage information by parsing taxonomic ranks for each `TaxID`, and
 ```python
 rankF_table.py
 ```
-Key steps:
+#### Key steps
 (The input data is vertically structured by taxonomic hierarchy, i.e., one taxon per row)
 - For each `TaxID`, construct a lineage table by adding columns for each taxonomic rank and filling in taxon names (from `Taxon`) accordingly
 - Traverse rows sequentially and evaluate the `Rank` column according to a predefined rank hierarchy: U → R → D → P → C → O → F
@@ -68,7 +68,7 @@ Filtered entries to include only those with Rank = F (Family), calculated the av
 ```python
 rankF_percent_sorting.py
 ```
-Key steps:
+#### Key steps:
 - Filter for family-level entries (Rank = F)
 - Calculate the average relative abundance of each family across all samples
 - Select top 30 families based on mean abundance
