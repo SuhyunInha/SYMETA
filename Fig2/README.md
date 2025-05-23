@@ -23,10 +23,10 @@ The plot was generated from Kraken2 classification outputs through the following
   
 | File                          | Description                                     |
 |-------------------------------|-------------------------------------------------|
-| `report_to_combined_rankF.sh` | extracts entries from Kraken2 report files and merges into a single file     |
+| `report_to_combined_rankF.sh` | Extracts entries from Kraken2 report files and merges into a single file     |
 | `combined_rankF.tsv`          | Output of `report_to_combined_rankF.sh`             |
-| `rankF_table.py`              | generates abundance matrices                         |
-| `rankF_percent_sorting.py`    | sorts and filters the top 30 abundant families   |
+| `rankF_table.py`              | Generates abundance matrices                         |
+| `rankF_percent_sorting.py`    | Sorts and filters the top 30 abundant families   |
 
 
 ## Workflow: From Kraken2 reports to `rankF_percent_top30.tsv`
@@ -47,18 +47,18 @@ Input: `*.Kraken2.Paired.report`
 Output: `combined_rankF.tsv`
 
 ### 2. Generate percent and read count tables
-Constructed lineage information by parsing taxonomic ranks for each `TaxID, and generated abundance tables for each sample.
+Constructed lineage information by parsing taxonomic ranks for each `TaxID`, and generated abundance tables for each sample.
 ```python
 rankF_table.py
 ```
 Key steps:
 (The input data is vertically structured by taxonomic hierarchy, i.e., one taxon per row)
-- For each `TaxID, construct a lineage table by adding columns for each taxonomic rank and filling in taxon names (from `Taxon) accordingly
-- Traverse rows sequentially and evaluate the `Rank column according to a predefined rank hierarchy: U → R → D → P → C → O → F
+- For each `TaxID`, construct a lineage table by adding columns for each taxonomic rank and filling in taxon names (from `Taxon`) accordingly
+- Traverse rows sequentially and evaluate the `Rank` column according to a predefined rank hierarchy: U → R → D → P → C → O → F
 - If a rank appears out of order, terminate the current lineage and begin a new one
 - If the same rank appears again, reuse the most recent valid taxon for all higher ranks
-- Skip `TaxIDs that have already been processed
-- After building the lineage table, append sample IDs as columns and populate each `TaxID–`Sample cell with the corresponding read count (from `Reads) or relative abundance (from `Percent)
+- Skip `TaxID`s that have already been processed
+- After building the lineage table, append sample IDs as columns and populate each `TaxID`–`Sample` cell with the corresponding read count (from `Reads`) or relative abundance (from `Percent`)
 
 Input: `combined_rankF.tsv`
 Output: `rankF_percent.tsv`, `rankF_read.tsv`
