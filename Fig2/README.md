@@ -40,7 +40,7 @@ report_to_combined_rankF.sh
 #### Key steps
 - Merge all Kraken2 `.report` files into one combined table
 - Extract sample names from filenames
-- Format output with: `Sample`, `Taxon`, `Percent`, `Reads`, `Rank`, `TaxID
+- Format output with: `Sample`, `Taxon`, `Percent`, `Reads`, `Rank`, `TaxID`
 - Exclude lower taxonomic ranks (in `Rank`): Genus (`G`), Species (`S`), and Strain (`S1`)
 
 Input: `*.Kraken2.Paired.report`
@@ -52,7 +52,7 @@ Constructed lineage information by parsing taxonomic ranks for each `TaxID`, and
 rankF_table.py
 ```
 #### Key steps
-(The input data is vertically structured by taxonomic hierarchy, i.e., one `Rank` per row)
+(The input data is vertically structured by taxonomic hierarchy, i.e., one Rank per row)
 - Built a lineage table with one row per `TaxID`, filling in values from `Taxon` into columns added according to the hierarchy order
 - Determined lineage structure by evaluating the `Rank` column in top-down order: U → R → D → P → C → O → F
 - Handled rank discontinuity and repeated ranks by reusing the most recent valid lineage where appropriate
