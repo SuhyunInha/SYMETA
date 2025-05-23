@@ -70,6 +70,7 @@ rankF_percent_sorting.py
 - Filter for family-level entries (`Rank = F`)
 - Calculate the average relative abundance of each family across all samples
 - Select top 30 families based on mean abundance
+- Remove all other data columns except taxonomy and sample-specific abundance values
 - Sort results by taxonomic hierarchy: Phylum → Class → Order → Family
 
 Input: `rankF_percent.tsv`
