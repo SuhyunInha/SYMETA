@@ -52,13 +52,11 @@ Constructed lineage information by parsing taxonomic ranks for each `TaxID`, and
 rankF_table.py
 ```
 #### Key steps
-(The input data is vertically structured by taxonomic hierarchy, i.e., one taxon per row)
-- For each `TaxID`, construct a lineage table by adding columns for each taxonomic rank and filling in taxon names (from `Taxon`) accordingly
-- Traverse rows sequentially and evaluate the `Rank` column according to a predefined rank hierarchy: U → R → D → P → C → O → F
-- If a rank appears out of order, terminate the current lineage and begin a new one
-- If the same rank appears again, reuse the most recent valid taxon for all higher ranks
-- Skip `TaxID`s that have already been processed
-- After building the lineage table, append sample IDs as columns and populate each `TaxID`–`Sample` cell with the corresponding read count (from `Reads`) or relative abundance (from `Percent`)
+(The input data is vertically structured by taxonomic hierarchy, i.e., one `Rank` per row)
+- Built a lineage table with one row per `TaxID`, filling in values from `Taxon` into columns added according to the hierarchy order
+- Determined lineage structure by evaluating the `Rank` column in top-down order: U → R → D → P → C → O → F
+- Handled rank discontinuity and repeated ranks by reusing the most recent valid lineage where appropriate
+- Appended sample IDs as columns and filled each `TaxID`–`Sample` cell with read count (`Reads`) or relative abundance (`Percent`)
 
 Input: `combined_rankF.tsv`
 Output: `rankF_percent.tsv`, `rankF_read.tsv`
