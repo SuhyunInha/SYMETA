@@ -1,6 +1,7 @@
 # Fig2: Taxonomic Composition Bubble Plot
 This directory contains all scripts and data files used to generate Figure 2 in the manuscript:
 "Microbial metagenomes from Lake Soyang, the largest freshwater reservoir in South Korea" (under review at Scientific Data)
+<br>
 
 ## Overview
 The figure illustrates the family-level taxonomic composition of metagenomic reads from 28 samples using a bubble plot.
@@ -9,6 +10,7 @@ The plot was generated from Kraken2 classification outputs through the following
 - Construction of lineage-resolved abundance tables
 - Selection of the top 30 most abundant families
 - Visualization in R
+  
 
 ## Directory Contents
 - Files for Figure Generation
@@ -28,9 +30,11 @@ The plot was generated from Kraken2 classification outputs through the following
 | `rankF_table.py`              | Generates abundance matrices                         |
 | `rankF_percent_sorting.py`    | Sorts and filters the top 30 abundant families   |
 
+<br>
 
 ## Workflow: From Kraken2 reports to `rankF_percent_top30.tsv`
 The input file for the R script was generated through the following bioinformatics steps, starting from 28 individual Kraken2 `.report` files
+<br><br>
 
 ### 1. Merge Kraken2 reports (family-level and higher ranks)
 Merged 28 Kraken2 `.report` files into a single table, extracting at the family-level and all higher taxonomic ranks.
@@ -43,8 +47,11 @@ report_to_combined_rankF.sh
 - Format output with: `Sample`, `Taxon`, `Percent`, `Reads`, `Rank`, `TaxID`
 - Exclude lower taxonomic ranks (in `Rank`): Genus (`G`), Species (`S`), and Strain (`S1`)
 
-#### Input: `*.Kraken2.Paired.report`
-#### Output: `combined_rankF.tsv` (included in this directory)
+Input: `*.Kraken2.Paired.report`
+
+Output: `combined_rankF.tsv` (included in this directory)
+
+<br>
 
 ### 2. Generate percent and read count tables
 Constructed lineage information by parsing taxonomic ranks for each `TaxID`, and generated abundance tables for each sample.
@@ -58,8 +65,11 @@ rankF_table.py
   - Handled rank discontinuity and repeated ranks by reusing the most recent valid lineage where appropriate
 - Once built, sample IDs were appended as columns and each `TaxID`–`Sample` cell was filled with read count (`Reads`) or relative abundance (`Percent`)
 
-#### Input: `combined_rankF.tsv`
-#### Output: `rankF_percent.tsv`, `rankF_read.tsv`
+Input: `combined_rankF.tsv`
+
+Output: `rankF_percent.tsv`, `rankF_read.tsv`
+
+<br>
 
 ### 3. Filter and sort top 30 abundant families
 Filtered entries to include only those with `Rank = F` (Family), calculated the average relative abundance across samples, and selected the top 30 most abundant families.
@@ -73,5 +83,6 @@ rankF_percent_sorting.py
 - Remove all other data columns except taxonomy and sample-specific abundance values
 - Sort results by taxonomic hierarchy: Phylum → Class → Order → Family
 
-#### Input: `rankF_percent.tsv`
-#### Output: `rankF_percent_top30.tsv` (included in this directory)
+Input: `rankF_percent.tsv`
+
+Output: `rankF_percent_top30.tsv` (included in this directory)
