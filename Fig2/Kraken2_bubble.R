@@ -1,5 +1,5 @@
 # Taxonomic Composition Bubble Plot in R
-##   Input: family_top30_selected.tsv
+##   Input: rankF_percent_top30.tsv
 ##   Output: taxonomy_bubble.pdf
 
 # Load required packages
